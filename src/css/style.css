@@ -1,0 +1,33 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+header, footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2vh;
+    background-color: rgb(38, 16, 0);
+    color: white;
+}
+header{
+    height: 4vh;
+}
+.root{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    margin-block: 2vh;
+}
+label{
+    margin-bottom: 1vh;
+}
