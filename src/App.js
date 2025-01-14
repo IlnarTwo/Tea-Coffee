@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Cart from './components/Cart';
-import Catalog from './components/Catalog';
+import Cart from './pages/Cart';
+import Catalog from './pages/Catalog';
 import Buy from './components/Buy';
-import Regist from './components/Regist';
-import Auth from './components/Auth'; 
+import Regist from './pages/Regist';
+import Auth from './pages/Auth'; 
+import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
 
@@ -21,8 +22,11 @@ class App extends React.Component {
     render(){
         return (
             <div>
-            <Header title="Shapkaaaaa///opj" />
-                авторизация
+            <Header title="Tea&Coffee" />
+                <div className='container'>
+                    <h1>Авторизация</h1>
+                    <Auth />
+                </div>
             <Footer />
             </div>
         )
