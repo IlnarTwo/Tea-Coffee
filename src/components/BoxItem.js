@@ -1,15 +1,12 @@
 import React from "react"
 import Item from "./Item"
 
-class BoxItem extends React.Component{
-    
+class BoxItem extends React.Component{  
     render(){
-    return(
-      <div className="catalogBox">
-        <Item />
-      </div>
-    )
-  }
+        return(
+            <Item />
+        )
+    }
 }
 
 export default BoxItem

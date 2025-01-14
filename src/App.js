@@ -1,6 +1,4 @@
 import React from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import Cart from './pages/Cart';
 import Catalog from './pages/Catalog';
 import Buy from './components/Buy';
@@ -22,12 +20,7 @@ class App extends React.Component {
     render(){
         return (
             <div>
-            <Header title="Tea&Coffee" />
-                <div className='container'>
-                    <h1>Авторизация</h1>
-                    <Auth />
-                </div>
-            <Footer />
+                <Auth />
             </div>
         )
     }
