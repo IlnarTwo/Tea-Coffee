@@ -7,9 +7,11 @@ class Catalog extends React.Component{
   render(){
     return(
       <div>
-        <Header />
-        <div className="catalogBox">
-          <BoxItem />
+        <Header title="Каталог" />
+        <div className="container">
+          <div className="catalogBox">
+            <BoxItem />
+          </div>
         </div>
         <Footer />
       </div>

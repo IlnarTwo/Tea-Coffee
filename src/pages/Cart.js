@@ -6,8 +6,10 @@ class Cart extends React.Component{
   render(){
     return(
       <div>
-        <Header />
-        ...
+        <Header title="Корзина" />
+        <div className="container">
+          ...
+        </div>
         <Footer />
       </div>
     )

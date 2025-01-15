@@ -11,16 +11,27 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            page: "auth"
         }
-
 
     } 
 
     render(){
         return (
             <div>
-                <Auth />
+                {
+                    this.state.page === "auth" && <Auth />
+                }
+                {
+                    this.state.page === "cart" && <Cart />
+                }
+                {
+                    this.state.page === "catalog" && <Catalog />
+                }
+                {
+                    this.state.page === "regist" && <Regist />
+                }
+                    
             </div>
         )
     }

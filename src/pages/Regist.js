@@ -6,8 +6,10 @@ class Regist extends React.Component{
   render(){
     return(
       <div>
-        <Header />
-        ...
+        <Header title="Регистрация" />
+        <div className="container">
+          ...
+        </div>
         <Footer />
       </div>
     )

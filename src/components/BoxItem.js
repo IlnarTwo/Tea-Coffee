@@ -3,9 +3,11 @@ import Item from "./Item"
 
 class BoxItem extends React.Component{  
     render(){
-        return(
-            <Item />
-        )
+        for (let i=0; i<8; i++){
+            return(
+                <Item />
+            )
+        } 
     }
 }
 
