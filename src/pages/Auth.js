@@ -9,24 +9,24 @@ class Auth extends React.Component{
       <div>
         <Header title="Авторизация" />
         <div className="container">
-          <Form action={"../php/auth.php"} method="post">
-            <Form.Group as={Row} className="mb-3" controlId="formAuth">
+          <Form onSubmit={".../php/auth.php"} method="post" className="col-md-5 mx-auto">
+            <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuth">
               <Form.Label column sm="2">
                 Email
               </Form.Label>
-              <Col sm="10">
+              <Col sm="5">
               <Form.Control type="email" placeholder="exampl@email.com" name="email" />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formAuth">
+            <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuth">
               <Form.Label column sm="2">
                 Password
               </Form.Label>
-              <Col sm="10">
+              <Col sm="5">
               <Form.Control type="password" name="passw" />
               </Col>
             </Form.Group>
-            <Button type="submit">Sign in</Button>
+            <Button type="submit" className="col-md-5 mx-auto">Sign in</Button>
           </Form>
         </div>
         <Footer />
