@@ -12,7 +12,10 @@ class Item extends React.Component{
           <Card.Text>
             Text my Item eeeeeeeeeeeeeee
           </Card.Text>
-          <Button variant="primary">Buy</Button>
+          <div className="">
+            <Button variant="primary">Buy</Button> 
+            Price my item
+          </div>
         </Card.Body>
       </Card>
     )

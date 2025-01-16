@@ -4,12 +4,16 @@ import Footer from "../components/Footer"
 import { Button, Col, Form, Row } from "react-bootstrap"
 
 class Auth extends React.Component{
+  handleSubmit = (e) => {
+    
+  }
+
   render(){
     return(
       <div>
         <Header title="Авторизация" />
         <div className="container">
-          <Form onSubmit={".../php/auth.php"} method="post" className="col-md-5 mx-auto">
+          <Form action={"http://localhost:8000/auth.php"} onSubmit={(e) => handleSubmit(e)} method="post" className="col-md-5 mx-auto">
             <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuth">
               <Form.Label column sm="2">
                 Email
