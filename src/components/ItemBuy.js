@@ -2,7 +2,7 @@ import React from "react"
 import { Button, Card } from "react-bootstrap"
 import item from "../img/item1.webp"
 
-class Item extends React.Component{
+class ItemBuy extends React.Component{
     render(){
     return(
       <Card style={{width: '18rem'}} className="my-4">
@@ -12,10 +12,12 @@ class Item extends React.Component{
           <Card.Text>
             Text my Item eeeeeeeeeeeeeee
           </Card.Text>
-          <div className="">
-            <Button variant="success">Buy</Button> 
+          <div className=""> 
             <div className="">
-              9999$
+              Количество: {this.props.quantity}
+            </div>
+            <div className="">
+              Цена: {this.props.price}
             </div>
           </div>
         </Card.Body>
@@ -24,4 +26,4 @@ class Item extends React.Component{
   }
 }
 
-export default Item
+export default ItemBuy

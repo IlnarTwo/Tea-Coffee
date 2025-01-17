@@ -6,16 +6,37 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            page: "auth"
+            page: "catalog",
+            authentidicat: false
         }
 
     } 
 
+    async getData() {
+        const url = "https://example.org/products.json";
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+            }
+            console.log(response.status);
+            const json = await response.json();
+            console.log(json);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
     render(){
         return (
-            <Pages page={this.state.page}/>
+            <div>
+                <Pages page={this.state.page}/>
+            </div>
         )
     }
+
+    
+      
 
 }
 

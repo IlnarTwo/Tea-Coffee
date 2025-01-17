@@ -10,7 +10,7 @@ class Regist extends React.Component{
         <Header title="Регистрация" />
         <div className="container">
           <Form action={"../php/auth.php"} method="post" className="col-md-5 mx-auto">
-          <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuth">
+          <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formRegistLogin">
               <Form.Label column sm="2">
                 Login
               </Form.Label>
@@ -18,7 +18,7 @@ class Regist extends React.Component{
               <Form.Control type="text" name="login" />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuth">
+            <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formRegistEmail">
               <Form.Label column sm="2">
                 Email
               </Form.Label>
@@ -26,7 +26,7 @@ class Regist extends React.Component{
               <Form.Control type="email" placeholder="exampl@email.com" name="email" />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuth">
+            <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formRegistPassw">
               <Form.Label column sm="2">
                 Password
               </Form.Label>

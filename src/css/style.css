@@ -73,3 +73,8 @@ label{
 .infoItem{
     padding: 2px;
 }
+.cartBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
