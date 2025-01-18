@@ -5,13 +5,12 @@ import { Button, Col, Form, Row } from "react-bootstrap"
 
 class Auth extends React.Component{
   
-
   render(){
     return(
       <div>
         <Header title="Авторизация" />
         <div className="container">
-          <Form action={"http://localhost:8000/auth.php"} method="post" className="col-md-5 mx-auto">
+          <Form action={"http://127.0.0.1/server/php/auth.php"} method="post" className="col-md-5 mx-auto">
             <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthEmail">
               <Form.Label column sm="2">
                 Email

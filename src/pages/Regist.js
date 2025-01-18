@@ -9,7 +9,7 @@ class Regist extends React.Component{
       <div>
         <Header title="Регистрация" />
         <div className="container">
-          <Form action={"../php/auth.php"} method="post" className="col-md-5 mx-auto">
+          <Form action={"http://127.0.0.1/server/php/regist.php"} method="post" className="col-md-5 mx-auto">
           <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formRegistLogin">
               <Form.Label column sm="2">
                 Login
