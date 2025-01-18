@@ -5,25 +5,29 @@ import Catalog from "../pages/Catalog"
 import Regist from "../pages/Regist"
 
 class Pages extends React.Component{
-  render(){
-    return(
-        <div>
-        {
-            this.props.page === "auth" && <Auth />
+    renderSwitch(param){
+        switch (param){
+            case "auth":
+                return <Auth />
+            case "regist":
+                return <Regist />
+            case "catalog":
+                return <Catalog />
+            case "cart":
+                return <Cart />
+            default:
+                return <Auth />
         }
-        {
-            this.props.page === "cart" && <Cart />
-        }
-        {
-            this.props.page === "catalog" && <Catalog />
-        }
-        {
-            this.props.page === "regist" && <Regist />
-        }
-            
-    </div>
-    )
-  }
+    }
+    render(){
+        return(
+            <div>
+                {
+                    this.renderSwitch(this.props.page)
+                }            
+            </div>
+        )
+    }
 }
 
 export default Pages

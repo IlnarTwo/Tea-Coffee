@@ -7,15 +7,15 @@ class App extends React.Component {
         super(props)
         this.state = {
             page: "regist",
-            authentidicat: false
+            authentificate: false
         }
 
     } 
 
     async getData() {
-        const url = "https://example.org/products.json";
+        const url = "http://127.0.0.1/server/php/authentificate.php";
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {mode: "no-cors"});
             if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
             }
