@@ -6,7 +6,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            page: "auth",
+            page: "admin",
             authentificate: false
         }
 

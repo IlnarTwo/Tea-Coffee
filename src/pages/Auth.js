@@ -33,14 +33,10 @@ class Auth extends React.Component {
         }
       });
 
-      if (!response.ok) {
-        throw new Error(`Network response was not ok: ${response.status}`);
-      }
-
       const data = await response.json();
       console.log(data);
-    } catch (error) {
-      console.error("There has been a problem with your fetch operation:", error);
+    } catch (e) {
+      console.error(e);
     }
 
     console.log(info);
