@@ -33,14 +33,14 @@ class Auth extends React.Component {
         }
       });
 
-      const data = await response.json();
-      console.log(data);
+      await response.json().then(res => {
+        console.log(res);
+      });
     } catch (e) {
       console.error(e);
     }
 
     console.log(info);
-    console.log("1234");
   }
 
   handleChangeEmail(event) {

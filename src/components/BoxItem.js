@@ -1,13 +1,27 @@
 import React from "react"
 import Item from "./Item"
 
-class BoxItem extends React.Component{  
+class BoxItem extends React.Component{
+    /*
+    forItem(props) {
+        for (let i = 0; i<props.q; i++){
+            <Item />
+        }
+    }
+    */
+    
     render(){
-        for (let i=0; i<8; i++){
-            return(
+        return(
+            <div className="catalogBox">
                 <Item />
-            )
-        } 
+                <Item />
+                <Item />
+                <Item />
+                <Item />
+                <Item />
+                <Item />
+            </div>
+        ) 
     }
 }
 

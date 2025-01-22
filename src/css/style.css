@@ -78,3 +78,9 @@ label{
     flex-direction: row;
     justify-content: space-around;
 }
+.rowBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;   
+}

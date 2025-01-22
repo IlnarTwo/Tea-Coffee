@@ -12,8 +12,8 @@ class Item extends React.Component{
           <Card.Text>
             Text my Item eeeeeeeeeeeeeee
           </Card.Text>
-          <div className="">
-            <Button variant="success">Buy</Button> 
+          <div className="rowBlock">
+            <Button variant="success" className="col-md-4">Buy</Button> 
             <div className="">
               9999$
             </div>

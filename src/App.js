@@ -16,9 +16,6 @@ class App extends React.Component {
         const url = "http://127.0.0.1/server/php/authentificate.php";
         try {
             const response = await fetch(url, {mode: "no-cors"});
-            if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-            }
             console.log(response.status);
             const json = await response.json();
             console.log(json);
