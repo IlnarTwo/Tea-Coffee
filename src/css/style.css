@@ -1,0 +1,91 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+header, footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2vh;
+    background-color: rgb(38, 16, 0);
+    color: white;
+}
+header{
+    min-height: 4vh;
+    margin-bottom: 25px;
+}
+.root{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    margin-block: 2vh;
+}
+label{
+    margin-bottom: 1vh;
+}
+.btn{
+    padding: 0.3vh;
+    margin-block: 0.3vh;
+    background-color: rgb(38, 16, 0);
+    color: white;
+    text-align: center;
+    border: 1px black solid;
+    border-radius: 9px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.catalogBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-block: 25px;
+}
+.blockItem{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    border: 2px #000 solid;
+    border-radius: 0px 0px 7px 7px;
+    padding-bottom: 5px;
+    margin-bottom: 3vh;
+}
+.imgItem{
+    width: 350px;
+    height: 350px;
+}
+.infoItem{
+    padding: 2px;
+}
+.cartBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.rowBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;   
+}
+.linkHeader{
+    text-decoration: none;
+    margin: 4px;
+    color: white;
+}
