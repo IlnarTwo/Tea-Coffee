@@ -2,6 +2,7 @@ import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Button, Col, Form, Row } from "react-bootstrap"
+import axios from "axios"
 
 class Regist extends React.Component{
   constructor(props){
@@ -10,7 +11,7 @@ class Regist extends React.Component{
       login: "",
       email: "",
       passw: "",
-      auth: ""
+      auth: false
     }
 
     this.onForm = this.onForm.bind(this)
@@ -19,34 +20,50 @@ class Regist extends React.Component{
     this.handleChangePassw = this.handleChangePassw.bind(this)
   }
 
+  
   async onForm(event) {
     event.preventDefault()
-    let info = {
+    // let info = {
+    //   login: this.state.login,
+    //   email: this.state.email,
+    //   passw: this.state.passw,
+    // }
+    
+    var self = this
+
+    axios.post( "http://127.0.0.1/server/php/regist.php", {
       login: this.state.login,
       email: this.state.email,
       passw: this.state.passw,
-      auth: false
-    }
+    })
+    .then((response) => {
+      console.log(response)
+      self.setState({auth: response['data']['auth']})
+    })
+    .catch((error) => {
+      console.log(error)
+    }) 
+    console.log(this.state.auth)
 
-    try {
-      const response = await fetch("http://127.0.0.1/server/php/regist.php", {
-        credentials: "same-origin",
-        method: "POST",
-        body: JSON.stringify(info),
-        headers: {
-           Accept: 'application/json',
-          "Content-Type": "application/json;charset=utf-8"
-        }
-      });
+    // try {
+    //   const response = await fetch("http://127.0.0.1/server/php/regist.php", {
+    //     credentials: "same-origin",
+    //     method: "POST",
+    //     body: JSON.stringify(info),
+    //     headers: {
+    //        Accept: 'application/json',
+    //       "Content-Type": "application/json;charset=utf-8"
+    //     }
+    //   });
 
-      await response.json().then(res => {
-        console.log(res['auth']);
-        this.setState({auth: res['auth']})
-        console.log(this.state.auth)
-      });
-    } catch (e) {
-      console.error(e);
-    }
+    //   await response.json().then(res => {
+    //     console.log(res['auth']);
+    //     this.setState({auth: res['auth']})
+    //     console.log(this.state.auth)
+    //   });
+    // } catch (e) {
+    //   console.error(e);
+    // }
   }
 
   handleChangeLogin(event) {

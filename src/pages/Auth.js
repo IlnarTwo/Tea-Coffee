@@ -25,18 +25,20 @@ class Auth extends React.Component {
     //   passw: this.state.passw,
     // }
 
+    var self = this
+
     axios.post( "http://127.0.0.1/server/php/auth.php", {
       email: this.state.email,
       passw: this.state.passw,
     })
     .then((response) => {
-      const {auth} = response.data
-      console.log(auth)
-      this.setState({auth})
+      console.log(response)
+      self.setState({auth: response['data']['auth']})
     })
     .catch((error) => {
       console.log(error)
     }) 
+    console.log(this.state.auth)
 
   //   try {
   //     const response = await fetch("http://127.0.0.1/server/php/auth.php", {
