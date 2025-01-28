@@ -44,7 +44,15 @@ class Header extends React.Component{
     return(
       <header className="header">
         {this.props.title}
-        {this.outputPage()}
+        {/* {this.outputPage()} */}
+
+        <Link className="linkHeader" to="/">Auth</Link>
+        <Link className="linkHeader" to="/regist">Regist</Link>
+        <Link className="linkHeader" to={"http://127.0.0.1/server/php/exit.php"}>Exit</Link>
+        <Link className="linkHeader" to="/catalog">Catalog</Link>
+        <Link className="linkHeader" to="/cart">Cart</Link>
+        <Link className="linkHeader" to="/admin">Admin</Link>
+        <Link className="linkHeader" to="/payment">Payment</Link>
       </header>
     )
   }

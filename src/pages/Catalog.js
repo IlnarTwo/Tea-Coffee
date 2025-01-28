@@ -2,7 +2,7 @@ import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import BoxItem from "../components/BoxItem"
-import { Button } from "react-bootstrap"
+import FormCatalog from "../components/Form"
 
 class Catalog extends React.Component{
   render(){
@@ -10,9 +10,8 @@ class Catalog extends React.Component{
       <div>
         <Header title="Каталог" auth={this.props.auth}/>
         <div className="container">
-          <div>
-            здесь надто может фильтр разместить или 
-            <Button>Cl-cl-cl</Button>
+          <div className="filterBlock">
+            <FormCatalog />
           </div>
           <BoxItem items={5}/>
         </div>

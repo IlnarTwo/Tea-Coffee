@@ -89,3 +89,7 @@ label{
     margin: 4px;
     color: white;
 }
+.filterBlock{
+    float: top;
+    width: 30%;
+}
