@@ -3,6 +3,8 @@ header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+header("Access-Control-Allow-Credentials: true");
+session_start();
 
 $json = file_get_contents('php://input');
 $obj = json_decode($json, true);
@@ -24,7 +26,6 @@ if (empty($user)){
     $registSql ="INSERT INTO `user`(`login`, `email`, `passw`, `roleUser`, `roleGroup`) VALUES ('".$login."','".$email."','".$passw."', '".$role."', '".$group."')";
     $regRes = $conn->query($registSql);
     if($regRes){
-        session_start();
         $_SESSION["auth"] = true;
         $_SESSION["email"] = $email;
         $_SESSION["role"] = $role;

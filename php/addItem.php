@@ -12,13 +12,16 @@ require_once("db.php");
 $img = "defaultimg";
 //позже надо продумать загрузку img и сохраниения названия в бд
 
-$titleItem = $obj['title'];
-$categoryItem = $obj['category'];
-$discripItem = $obj['discrip'];
-$priceItem = $obj['price'];
-
-$sqlInsert = "INSERT INTO `item`(`img`, `title`, `category`, `discrip`, `price`) VALUES ('".$img."','".$titleItem."','".$categoryItem."','".$discripItem."','".$priceItem."')";
-$res = $conn->query($sqlInsert);
+if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) || isset($obj['price'])){
+    $titleItem = $obj['title'];
+    $categoryItem = $obj['category'];
+    $discripItem = $obj['discript'];
+    $priceItem = $obj['price'];
+    
+    
+    $sqlInsert = "INSERT INTO `item`(`img`, `title`, `category`, `discrip`, `price`) VALUES ('".$img."','".$titleItem."','".$categoryItem."','".$discripItem."','".$priceItem."')";
+    $res = $conn->query($sqlInsert);
+}
 
 if ($res){
     echo json_encode(

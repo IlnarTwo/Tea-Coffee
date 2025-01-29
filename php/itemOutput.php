@@ -9,13 +9,31 @@ $obj = json_decode($json, true);
 
 require_once("db.php");
 
-$selectTitle = $obj['title'];
-$selectCategory = $obj['categoru'];
-$selectDiscript = $obj['discript'];
-$selectPrice = $obj['price'];
+if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) || isset($obj['price'])){
+    $titleItem = $obj['title'];
+    $categoryItem = $obj['category'];
+    $discripItem = $obj['discript'];
+    $priceItem = $obj['price'];
+    
+    $allItem = "SELECT * FROM `item` where `title` like '%".$selectTitle."%' or `category` like '%".$selectCategory."%' or `discrip` like '%".$selectDiscript."%' or `price` like '%".$selectPrice."%'";
+    $res = $conn->query($allItem);
+    $items = $res->fetchAll(PDO::FETCH_ASSOC);
 
-$allItem = "SELECT * FROM `item` where `title` like '%".$selectTitle."%' or `category` like '%".$selectCategory."%' or `discrip` like '%".$selectDiscript."%' or `price` like '%".$selectPrice."%'";
-$res = $conn->query($allItem);
+    foreach ($items as $value){
+        echo json_encode($value);
+    }
+
+}else{
+
+    $allItem = "SELECT * FROM `item`";
+    $res = $conn->query($allItem);
+    $items = $res->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($items as $value){
+        echo json_encode($value);
+    }
+
+}
 
 // надо посмотреть и подумать как мен с помощью foreach вывести все item
 ?>
