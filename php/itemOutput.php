@@ -9,6 +9,8 @@ $obj = json_decode($json, true);
 
 require_once("db.php");
 
+$output = [];
+
 if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) || isset($obj['price'])){
     $titleItem = $obj['title'];
     $categoryItem = $obj['category'];
@@ -20,7 +22,7 @@ if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) |
     $items = $res->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($items as $value){
-        echo json_encode($value);
+        $output [] = $value;
     }
 
 }else{
@@ -30,10 +32,10 @@ if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) |
     $items = $res->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($items as $value){
-        echo json_encode($value);
+        $output [] = $value;
     }
 
 }
 
-// надо посмотреть и подумать как мен с помощью foreach вывести все item
+echo json_encode(["data" => $output]);
 ?>
