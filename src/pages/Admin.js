@@ -2,10 +2,60 @@ import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Button, Col, Form, Row } from "react-bootstrap";
+import axios from "axios";
 
 class Admin extends React.Component{
 
+  constructor(props){
+    super(props)
+    this.state = {
+      title: "",
+      category: "",
+      discript: "",
+      price: ""
+    }
 
+    this.onForm = this.onForm.bind(this)
+    this.handleChangeTitle = this.handleChangeTitle.bind(this)
+    this.handleChangeCategory = this.handleChangeCategory.bind(this)
+    this.handleChangeDiscript = this.handleChangeDiscript.bind(this)
+    this.handleChangePrice = this.handleChangePrice.bind(this)
+  }
+
+  
+  async onForm(event) {
+    event.preventDefault()
+    
+    // var self = this
+
+    axios.post( "http://127.0.0.1/server/php/addItem.php", {
+      title: this.state.title,
+      category: this.state.category,
+      discript: this.state.discript,
+      price: this.state.price
+    })
+    .then((response) => {
+      console.log(response)
+      // self.setState({auth: response['data']['auth']})
+    })
+    .catch((error) => {
+      console.log(error)
+    }) 
+
+  }
+
+  handleChangeTitle(event) {
+    this.setState({title: event.target.value})
+  }
+  handleChangeCategory(event) {
+    this.setState({category: event.target.value})
+  }
+  handleChangeDiscript(event){
+    this.setState({discript: event.target.value})
+  }
+  handleChangePrice(event){
+    this.setState({price: event.target.value})
+  }
 
   render(){
     return(

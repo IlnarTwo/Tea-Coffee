@@ -1,6 +1,6 @@
 import React from "react"
 import { Button, Card } from "react-bootstrap"
-import item from "../img/item1.webp"
+import item from "../img/defaultimg.webp"
 
 class Item extends React.Component{
     render(){
