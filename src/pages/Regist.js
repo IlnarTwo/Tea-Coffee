@@ -35,6 +35,7 @@ class Regist extends React.Component{
       login: this.state.login,
       email: this.state.email,
       passw: this.state.passw,
+      withcredentials: true
     })
     .then((response) => {
       console.log(response)

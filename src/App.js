@@ -34,11 +34,14 @@ class App extends React.Component {
 
   componentDidMount() {
     this.intervalId = setInterval(() => {
-      axios.post( "http://127.0.0.1/server/php/authentificate.php")
+      axios.get( "http://127.0.0.1/server/php/authentificate.php",{
+        withcredentials: true
+      })
       .then((response) => {
-        const {auth, role} = response.data
-        console.log(auth)
-        this.setState({ auth, role}) 
+        // const {auth, role} = response.data
+        // console.log(auth)
+        // this.setState({ auth, role}) 
+        return response
       })
       .catch((error) => {
         console.log(error)

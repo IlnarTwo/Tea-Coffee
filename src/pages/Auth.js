@@ -30,6 +30,7 @@ class Auth extends React.Component {
     axios.post( "http://127.0.0.1/server/php/auth.php", {
       email: this.state.email,
       passw: this.state.passw,
+      withcredentials: true
     })
     .then((response) => {
       console.log(response)
