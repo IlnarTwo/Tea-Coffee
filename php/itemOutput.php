@@ -37,5 +37,5 @@ if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) |
 
 }
 
-echo json_encode(["data" => $output]);
+echo json_encode($output);
 ?>

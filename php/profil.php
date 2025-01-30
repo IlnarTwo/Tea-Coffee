@@ -6,9 +6,19 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 header("Access-Control-Allow-Credentials: true");
 session_start();
 
-if(isset($_SESSION['auth'])){
-    echo json_encode(['auth' => true, 'role' => $_SESSION['role']]);
-}else{
-    echo json_encode(['auth' => false]);
-}
+$json = file_get_contents('php://input');
+$obj = json_decode($json, true);
+
+require_once("db.php");
+
+// $email = $_SESSION['email'];
+$email = "ila@ila";
+
+$authSql = "SELECT * FROM `user` where email = '".$email."'";
+$res = $conn->query($authSql);
+
+$user = $res->fetch(PDO::FETCH_ASSOC);
+
+echo json_encode($user);
+
 ?>
