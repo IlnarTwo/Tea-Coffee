@@ -12,7 +12,8 @@ class Header extends React.Component{
   
             <Link className="linkHeader" to="/catalog">Catalog</Link>
             <Link className="linkHeader" to="/cart">Cart</Link>
-            <Link className="linkHeader" to="/payment">Payment</Link>  
+            <Link className="linkHeader" to="/payment">Payment</Link>
+            <Link className="linkHeader" to="/profil">Profil</Link>  
           </nav>
         )
       }else{
@@ -24,6 +25,7 @@ class Header extends React.Component{
             <Link className="linkHeader" to="/cart">Cart</Link>
             <Link className="linkHeader" to="/admin">Admin</Link>
             <Link className="linkHeader" to="/payment">Payment</Link>
+            <Link className="linkHeader" to="/profil">Profil</Link>
           </nav>
         )
       }
@@ -53,6 +55,7 @@ class Header extends React.Component{
         <Link className="linkHeader" to="/cart">Cart</Link>
         <Link className="linkHeader" to="/admin">Admin</Link>
         <Link className="linkHeader" to="/payment">Payment</Link>
+        <Link className="linkHeader" to="/profil">Profil</Link>
       </header>
     )
   }

@@ -6,6 +6,7 @@ import Catalog from "../pages/Catalog"
 import Regist from "../pages/Regist"
 import Admin from "../pages/Admin"
 import Payment from "../pages/Payment";
+import Profil from "../pages/Profil";
 
 class Pages extends React.Component {
     render(){
@@ -19,6 +20,7 @@ class Pages extends React.Component {
                         <Route path="/cart" element={<Cart auth={this.props.auth}/>} />
                         <Route path="/admin" element={<Admin auth={this.props.auth} role={this.props.role}/>} />
                         <Route path="/payment" element={<Payment auth={this.props.auth}/>} />
+                        <Route path="/profil" element={<Profil auth={this.props.auth}/>} />
                     </Routes>
                 </BrowserRouter>
             </div>    

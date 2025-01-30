@@ -1,8 +1,8 @@
 import React from "react"
-import Item from "./Item"
+import UserBlock from "./UserBlock";
 import axios from "axios";
 
-class BoxItem extends React.Component{
+class Users extends React.Component{
     /*
     forItem(props) {
         for (let i = 0; i<props.q; i++){
@@ -17,7 +17,7 @@ class BoxItem extends React.Component{
             
           console.log(response.map(({key, value}) => ({[key]: value})))
           return(
-            <Item />
+            <UserBlock />
           )  
         })
         .catch((error) => {
@@ -29,16 +29,10 @@ class BoxItem extends React.Component{
         return(
             <div className="catalogBox">
                 {this.outputItems()}
-                <Item />
-                <Item />
-                <Item />
-                <Item />
-                <Item />
-                <Item />
-                <Item />
+                <UserBlock />
             </div>
         ) 
     }
 }
 
-export default BoxItem
+export default Users

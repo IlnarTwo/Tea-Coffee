@@ -1,6 +1,7 @@
 import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
+import Users from "../components/Users";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import axios from "axios";
 
@@ -64,7 +65,7 @@ class Admin extends React.Component{
         <div className="container">
           <div className="rowBlock">
             <div className="col-md-6">
-              Здесь возможно инфва об админе или еще что-то пока не придумал
+              <Users />
             </div>
             <Form onSubmit={this.onForm} method="post" className="col-md-6 mx-auto">
               <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthEmail">
