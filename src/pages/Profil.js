@@ -2,8 +2,9 @@ import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Item from "../components/Item"
-import { Button } from "react-bootstrap"
 import axios from "axios"
+import ProfilBlock from "../components/ProfilBlock"
+import BoxOrder from "../components/BoxOrder"
 
 class Profil extends React.Component{
 
@@ -25,14 +26,15 @@ class Profil extends React.Component{
       <div>
         <Header title="Профиль" auth={this.props.auth}/>
         <div className="container">
-          <div className="cartBox">
+          <div className="contentProfil">
           {this.outputUser()}
-          sfhaui
-          </div>
-          <div>
-            <Button>
-              Оплатить
-            </Button>
+            <div className="ordersBlock">
+              <BoxOrder />
+            </div>
+            <div className="profilBlock">
+              <ProfilBlock login="ila" email="ila@ila" role="user"/>
+
+            </div>
           </div>
         </div>
         <Footer />
