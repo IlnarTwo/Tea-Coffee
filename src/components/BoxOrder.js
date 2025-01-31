@@ -22,13 +22,13 @@ class BoxOrder extends React.Component{
         return(
             <div className="catalogBox">
                 {this.outputOrders()}
-                <Order />
-                <Order />
-                <Order />
-                <Order />
-                <Order />
-                <Order />
-                <Order />
+                <Order price="9999" date="31.01.25"/>
+                <Order price="9999" date="31.01.25"/>
+                <Order price="9999" date="31.01.25"/>
+                <Order price="9999" date="31.01.25"/>
+                <Order price="9999" date="31.01.25"/>
+                <Order price="9999" date="31.01.25"/>
+                <Order price="9999" date="31.01.25"/>
             </div>
         ) 
     }
