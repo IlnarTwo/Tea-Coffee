@@ -12,7 +12,7 @@ class Users extends React.Component{
     */
 
     outputItems() {
-        axios.post( "http://127.0.0.1/server/php/itemOutput.php")
+        axios.post( "http://127.0.0.1/server/php/users.php")
         .then((response) => {
             
           console.log(response.map(({key, value}) => ({[key]: value})))

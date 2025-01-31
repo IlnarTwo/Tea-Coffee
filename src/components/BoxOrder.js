@@ -5,7 +5,7 @@ import axios from "axios";
 class BoxOrder extends React.Component{
 
     outputOrders() {
-        axios.post( "http://127.0.0.1/server/php/itemOutput.php")
+        axios.post( "http://127.0.0.1/server/php/orders.php")
         .then((response) => {
             
           console.log(response.map(({key, value}) => ({[key]: value})))
@@ -22,7 +22,6 @@ class BoxOrder extends React.Component{
         return(
             <div className="catalogBox">
                 {this.outputOrders()}
-                <Order price="9999" date="31.01.25"/>
                 <Order price="9999" date="31.01.25"/>
                 <Order price="9999" date="31.01.25"/>
                 <Order price="9999" date="31.01.25"/>
