@@ -16,9 +16,5 @@ $res = $conn->query($authSql);
 
 $users = $res->fetch(PDO::FETCH_ASSOC);
 
-var_dump($users);
-
-var_dump($res);
-
 echo json_encode($users);
 ?>

@@ -11,5 +11,10 @@ $obj = json_decode($json, true);
 
 require_once("db.php");
 
+$authSql ="SELECT * FROM `orderitem`";
+$res = $conn->query($authSql);
 
+$orders = $res->fetch(PDO::FETCH_ASSOC);
+
+echo json_encode($orders);
 ?>
