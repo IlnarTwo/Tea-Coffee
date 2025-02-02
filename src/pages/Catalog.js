@@ -2,7 +2,6 @@ import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import BoxItem from "../components/BoxItem"
-import FormCatalog from "../components/Form"
 
 class Catalog extends React.Component{
   render(){
@@ -11,7 +10,7 @@ class Catalog extends React.Component{
         <Header title="Каталог" auth={this.props.auth}/>
         <div className="container">
           <div className="filterBlock">
-            <FormCatalog />
+            {/* { тут должен быть фильтор товаров} */}
           </div>
           <BoxItem items={5}/>
         </div>

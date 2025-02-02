@@ -87,22 +87,27 @@ label{
     justify-content: space-around;
     align-items: center;   
 }
-.linkHeader{
+.linkHeader {
+    color: #d3c1b2;
     text-decoration: none;
-    margin: 4px;
-    color: white;
-}
+    transition: color 0.2s;
+  }
+  .linkHeader:hover {
+    color: #f8f5f2;
+  }
 .filterBlock{
     float: top;
     width: 30%;
 }
-.container{
+.container {
     padding-block: 4vh;
     height: 100%;
-    min-height: 350px;
 }
 .contentProfil{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
+.hover-shadow:hover {
+    transform: scale(1.05);
+  }
