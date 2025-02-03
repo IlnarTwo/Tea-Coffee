@@ -15,7 +15,11 @@ class Order extends React.Component{
             <br />
             {this.props.date}
           </Card.Text>
-          <Button variant="success" className="col-md-6">Отменить</Button> 
+          <Button 
+            variant="success" 
+            className="col-md-6"
+            style={{ backgroundColor: '#8b7355', borderColor: '#8b7355', borderRadius: '5px', fontFamily: 'Georgia, serif' }}
+          >Отменить</Button> 
         </Card.Body>
       </Card>
     )

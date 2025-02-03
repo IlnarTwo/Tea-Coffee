@@ -16,7 +16,9 @@ class Cart extends React.Component{
             <ItemBuy quantity="999" price="999"/>
           </div>
           <div>
-            <Button>
+            <Button
+              style={{ backgroundColor: '#8b7355', borderColor: '#8b7355', borderRadius: '5px', fontFamily: 'Georgia, serif' }}
+            >
               Оплатить
             </Button>
           </div>

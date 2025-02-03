@@ -76,6 +76,7 @@ class Admin extends React.Component{
                   <Form.Control
                     type="file"
                     name="img"
+                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
               </Form.Group>
@@ -88,6 +89,7 @@ class Admin extends React.Component{
                     type="text"
                     name="title"
                     onChange={this.handleChangeTitle}
+                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
               </Form.Group>
@@ -100,6 +102,7 @@ class Admin extends React.Component{
                     type="text" 
                     name="category" 
                     onChange={this.handleChangeCategory} 
+                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
               </Form.Group>
@@ -112,6 +115,7 @@ class Admin extends React.Component{
                     as="textarea" 
                     name="discript" 
                     onChange={this.handleChangeDiscript} 
+                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
               </Form.Group>
@@ -125,10 +129,15 @@ class Admin extends React.Component{
                     type="number" 
                     name="price" 
                     onChange={this.handleChangePrice} 
+                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
               </Form.Group>
-              <Button type="submit" className="col-md-5 mx-auto">
+              <Button 
+                type="submit" 
+                className="col-md-5 mx-auto"
+                style={{ backgroundColor: '#8b7355', borderColor: '#8b7355', borderRadius: '5px', fontFamily: 'Georgia, serif' }}
+                >
                 Add item
               </Button>
             </Form>

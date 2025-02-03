@@ -11,52 +11,51 @@ class Header extends React.Component {
       return (
         <Nav className="ms-auto">
           <LogoutButton />
-          <Nav.Link as={Link} to="/catalog" className="linkHeader">
+          <Link as={Link} to="/catalog" className="linkHeader">
             Каталог
-          </Nav.Link>
-          <Nav.Link as={Link} to="/cart" className="linkHeader">
+          </Link>
+          <Link as={Link} to="/cart" className="linkHeader">
             Корзина
-          </Nav.Link>
-          <Nav.Link as={Link} to="/payment" className="linkHeader">
+          </Link>
+          <Link as={Link} to="/payment" className="linkHeader">
             Оплата
-          </Nav.Link>
-          <Nav.Link as={Link} to="/profil" className="linkHeader">
+          </Link>
+          <Link as={Link} to="/profil" className="linkHeader">
             Профиль
-          </Nav.Link>
+          </Link>
           {role === "admin" && (
-            <Nav.Link as={Link} to="/admin" className="linkHeader">
+            <Link as={Link} to="/admin" className="linkHeader">
               Админ
-            </Nav.Link>
+            </Link>
           )}
         </Nav>
       );
     } else {
       return (
         <Nav className="ms-auto">
-          <Nav.Link as={Link} to="/" className="linkHeader">
+          
+          <Link as={Link} to="/" className="linkHeader">
             Вход
-          </Nav.Link>
-          <Nav.Link as={Link} to="/regist" className="linkHeader">
+          </Link>
+          <Link as={Link} to="/regist" className="linkHeader">
             Регистрация
-          </Nav.Link>
-          <Nav.Link as={Link} to="/catalog" className="linkHeader">
+          </Link>
+          <Link as={Link} to="/catalog" className="linkHeader">
             Каталог
-          </Nav.Link>
+          </Link>
 
-          <Nav.Link as={Link} to="/cart" className="linkHeader">
+          <Link as={Link} to="/cart" className="linkHeader">
             Корзина
-          </Nav.Link>
-          <Nav.Link as={Link} to="/payment" className="linkHeader">
+          </Link>
+          <Link as={Link} to="/payment" className="linkHeader">
             Оплата
-          </Nav.Link>
-          <Nav.Link as={Link} to="/profil" className="linkHeader">
+          </Link>
+          <Link as={Link} to="/profil" className="linkHeader">
             Профиль
-          </Nav.Link>
-          {role === "admin" && (
-            <Nav.Link as={Link} to="/admin" className="linkHeader">
-              Админ
-            </Nav.Link>
-          )}
+          </Link>
+          <Link as={Link} to="/admin" className="linkHeader">
+            Админ
+          </Link>
           
         </Nav>
       );

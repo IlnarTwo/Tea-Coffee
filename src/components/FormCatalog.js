@@ -55,7 +55,11 @@ class FormCatalog extends React.Component{
                 />
             </Col>
             </Form.Group>
-            <Button type="submit" className="col-md-5 mx-auto">
+            <Button 
+                type="submit" 
+                className="col-md-5 mx-auto"
+                style={{ backgroundColor: '#8b7355', borderColor: '#8b7355', borderRadius: '5px', fontFamily: 'Georgia, serif' }}
+            >
                 Searche
             </Button>
         </Form>

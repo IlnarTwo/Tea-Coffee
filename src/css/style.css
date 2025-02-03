@@ -91,10 +91,11 @@ label{
     color: #d3c1b2;
     text-decoration: none;
     transition: color 0.2s;
-  }
-  .linkHeader:hover {
+    margin-inline: 0.5rem;
+}
+.linkHeader:hover {
     color: #f8f5f2;
-  }
+}
 .filterBlock{
     float: top;
     width: 30%;
@@ -110,4 +111,4 @@ label{
 }
 .hover-shadow:hover {
     transform: scale(1.05);
-  }
+}

@@ -41,6 +41,7 @@ class Auth extends React.Component {
       console.log(error);
     });
     console.log(this.state.auth)
+    console.log(localStorage)
   }
 
   handleChangeEmail(event) {

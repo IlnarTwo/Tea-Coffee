@@ -13,7 +13,13 @@ class UserBlock extends React.Component{
             User text
           </Card.Text>
           <div className="rowBlock">
-            <Button variant="success" className="col-md-5">Add manager</Button> 
+            <Button 
+              variant="success" 
+              className="col-md-5"
+              style={{ backgroundColor: '#8b7355', borderColor: '#8b7355', borderRadius: '5px', fontFamily: 'Georgia, serif' }}
+            >
+              Add manager
+            </Button> 
           </div>
         </Card.Body>
       </Card>

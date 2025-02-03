@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { Button } from "react-bootstrap";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
@@ -29,9 +30,12 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogout} className="btn btn-danger">
+    <Button 
+      onClick={handleLogout} 
+      className="btn btn-danger"
+    >
       Logout
-    </button>
+    </Button>
   );
 };
 

@@ -35,6 +35,7 @@ class App extends React.Component {
       axios
         .get('http://127.0.0.1/server/php/authentificate.php', {
           headers: {
+            "Cache-Control": "no-cache",
             Authorization: `Bearer ${jwt}`, // Добавляем JWT в заголовок
           },
           withCredentials: true, // Используем куки, если необходимо
