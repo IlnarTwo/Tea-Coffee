@@ -28,6 +28,9 @@ class App extends React.Component {
   checkAuth = () => {
     const jwt = localStorage.getItem('jwt'); // Получаем JWT из localStorage
 
+    // this.setState({auth: localStorage['auth']})
+    // this.setState({auth: localStorage['role']})
+
     var self = this
 
     if (jwt) {
@@ -52,7 +55,7 @@ class App extends React.Component {
       // Если JWT отсутствует, сбрасываем состояние
       self.setState({ auth: false, role: null });
     }
-  };
+  }
 
   render() {
     const { auth, role } = this.state;

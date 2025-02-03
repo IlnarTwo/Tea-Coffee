@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { Button } from "react-bootstrap";
+import { Link } from "react-router";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const LogoutButton = () => {
       if (response.data.success) {
         // Удаляем JWT из localStorage
         localStorage.removeItem("jwt");
+        localStorage.removeItem("auth");
 
         // Убираем заголовок Authorization для всех последующих запросов
         delete axios.defaults.headers.common["Authorization"];
@@ -30,12 +31,12 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button 
+    <Link to="/"
       onClick={handleLogout} 
-      className="btn btn-danger"
+      className="linkHeader"
     >
-      Logout
-    </Button>
+      Выход
+    </Link>
   );
 };
 

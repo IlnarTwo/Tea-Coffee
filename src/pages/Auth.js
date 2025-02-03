@@ -34,6 +34,8 @@ class Auth extends React.Component {
         // Сохраняем JWT в localStorage
         console.log(response.data.token)
         localStorage.setItem('jwt', response.data.token);
+        // localStorage.setItem('auth', response.data.auth);
+        // localStorage.setItem('role', response.data.role);
         self.setState({ auth: true });
       }
     })

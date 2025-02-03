@@ -40,6 +40,8 @@ class Regist extends React.Component {
       if (response.data.auth) {
         // Сохраняем JWT в localStorage
         localStorage.setItem("jwt", response.data.token);
+        // localStorage.setItem('auth', response.data.auth);
+        // localStorage.setItem('role', response.data.role);
 
         // Устанавливаем заголовок Authorization для всех последующих запросов
         axios.defaults.headers.common[
