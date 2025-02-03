@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Password');
 header("Access-Control-Allow-Credentials: true");
 
 $json = file_get_contents('php://input');
@@ -27,13 +27,13 @@ if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) |
 if ($res){
     echo json_encode(
         ["output" => "
-            alert('Товар добавлен')
+            Товар добавлен
         "]
     );
 }else{
     echo json_encode(
         ["output" => "
-            alert('Ошибка при регистрации товара')
+            Ошибка при регистрации товара
         "]
     );
 }

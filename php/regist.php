@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST');
-header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Password');
 header("Access-Control-Allow-Credentials: true");
 
 require '../vendor/autoload.php'; // Подключаем автозагрузчик Composer
@@ -33,7 +33,7 @@ if (empty($user)) {
 
     if ($regRes) {
         // Генерация JWT после успешной регистрации
-        $secretKey = "your_secret_key"; // Замените на ваш секретный ключ
+        $secretKey = "ilia_shurygin"; // Замените на ваш секретный ключ
         $issuedAt = time();
         $expirationTime = $issuedAt + 3600; // Токен будет действителен 1 час
 

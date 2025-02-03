@@ -2,14 +2,14 @@
 header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Password');
 header("Access-Control-Allow-Credentials: true");
 
 require '../vendor/autoload.php'; // Подключаем автозагрузчик Composer
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-$secretKey = "your_secret_key"; // Тот же ключ, что и при генерации JWT
+$secretKey = "ilia_shurygin"; // Тот же ключ, что и при генерации JWT
 
 $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
 
