@@ -7,28 +7,24 @@ class App extends React.Component {
     super(props);
     this.state = {
       auth: false,
-      role: null, // Роль пользователя
+      role: null, 
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
-    // Проверяем аутентификацию при загрузке приложения
     this.checkAuth();
 
-    // Устанавливаем интервал для периодической проверки аутентификации
     this.intervalId = setInterval(() => {
       this.checkAuth();
-    }, 10000); // Проверка каждые 10 секунд
+    }, 10000); 
   }
 
   componentWillUnmount() {
-    // Очищаем интервал при размонтировании компонента
     clearInterval(this.intervalId);
   }
 
-  // Функция для проверки аутентификации
   checkAuth = () => {
     const jwt = localStorage.getItem('jwt'); // Получаем JWT из localStorage
 
@@ -51,7 +47,7 @@ class App extends React.Component {
           console.error('Error checking authentication:', error);
           self.setState({ auth: false, role: null }); // Сбрасываем состояние при ошибке
         });
-    } else {
+    } else { 
       // Если JWT отсутствует, сбрасываем состояние
       self.setState({ auth: false, role: null });
     }

@@ -7,8 +7,8 @@ class BoxOrder extends React.Component{
     outputOrders() {
         axios.post( "http://127.0.0.1/server/php/orders.php")
         .then((response) => {
-            
-          console.log(response.map(({key, value}) => ({[key]: value})))
+          console.log(response)
+          // console.log(response.map(({key, value}) => ({[key]: value})))
           return(
             <Order />
           )  

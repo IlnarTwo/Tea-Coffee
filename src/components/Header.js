@@ -42,6 +42,22 @@ class Header extends React.Component {
           <Nav.Link as={Link} to="/catalog" className="linkHeader">
             Каталог
           </Nav.Link>
+
+          <Nav.Link as={Link} to="/cart" className="linkHeader">
+            Корзина
+          </Nav.Link>
+          <Nav.Link as={Link} to="/payment" className="linkHeader">
+            Оплата
+          </Nav.Link>
+          <Nav.Link as={Link} to="/profil" className="linkHeader">
+            Профиль
+          </Nav.Link>
+          {role === "admin" && (
+            <Nav.Link as={Link} to="/admin" className="linkHeader">
+              Админ
+            </Nav.Link>
+          )}
+          
         </Nav>
       );
     }
