@@ -1,0 +1,5 @@
+Header set Access-Control-Allow-Origin "*"
+Header add Access-Control-Allow-Methods "GET, POST"
+Header always set Access-Control-Allow-Headers "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Password"
+Header always set Access-Control-Expose-Headers "Authorization, *"
+Header always set Access-Control-Allow-Credentials "true"
