@@ -52,6 +52,7 @@ if (empty($user)) {
         // Отправляем JWT на фронтенд
         echo json_encode([
             'auth' => true,
+            'role' => $role,
             'token' => $jwt
         ]);
     } else {

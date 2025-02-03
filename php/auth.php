@@ -43,6 +43,7 @@ if ($user) {
     // Отправляем JWT на фронтенд
     echo json_encode([
         'auth' => true,
+        'role' => $user["roleUser"],
         'token' => $jwt
     ]);
 } else {
