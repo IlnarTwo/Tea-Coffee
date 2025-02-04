@@ -89,6 +89,7 @@ class Admin extends React.Component{
                     type="text"
                     name="title"
                     onChange={this.handleChangeTitle}
+                    required
                     style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
@@ -102,6 +103,7 @@ class Admin extends React.Component{
                     type="text" 
                     name="category" 
                     onChange={this.handleChangeCategory} 
+                    required
                     style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
@@ -115,6 +117,7 @@ class Admin extends React.Component{
                     as="textarea" 
                     name="discript" 
                     onChange={this.handleChangeDiscript} 
+                    required
                     style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>
@@ -129,6 +132,7 @@ class Admin extends React.Component{
                     type="number" 
                     name="price" 
                     onChange={this.handleChangePrice} 
+                    required
                     style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                   />
                 </Col>

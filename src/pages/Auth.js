@@ -54,26 +54,6 @@ class Auth extends React.Component {
     this.setState({ passw: event.target.value });
   }
 
-  // Пример функции для выполнения запроса с JWT
-  // async fetchProtectedData() {
-  //   const jwt = localStorage.getItem('jwt');
-  //   if (!jwt) {
-  //     console.error('JWT not found');
-  //     return;
-  //   }
-
-  //   try {
-  //     const response = await axios.get("http://127.0.0.1/server/php/protected.php", {
-  //       headers: {
-  //         Authorization: `Bearer ${jwt}`
-  //       }
-  //     });
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
   render() {
     return (
       <div style={{ backgroundColor: '#f8f5f2', minHeight: '100vh' }}>
@@ -91,6 +71,7 @@ class Auth extends React.Component {
                   placeholder="example@email.com"
                   name="email"
                   onChange={this.handleChangeEmail}
+                  required
                   style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                 />
               </Col>
@@ -104,6 +85,7 @@ class Auth extends React.Component {
                   type="password"
                   name="passw"
                   onChange={this.handleChangePassw}
+                  required
                   style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
                 />
               </Col>

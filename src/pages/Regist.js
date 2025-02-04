@@ -38,21 +38,17 @@ class Regist extends React.Component {
       );
 
       if (response.data.auth) {
-        // Сохраняем JWT в localStorage
         localStorage.setItem("jwt", response.data.token);
         // localStorage.setItem('auth', response.data.auth);
         // localStorage.setItem('role', response.data.role);
 
-        // Устанавливаем заголовок Authorization для всех последующих запросов
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.token}`;
 
-        // Обновляем состояние и перенаправляем пользователя
         this.setState({ auth: true });
         this.props.navigate("/catalog"); // Перенаправляем на главную страницу
       } else {
-        // Если регистрация не удалась, выводим сообщение об ошибке
         this.setState({ errorMessage: response.data.message });
       }
     } catch (error) {
@@ -155,5 +151,4 @@ class Regist extends React.Component {
   }
 }
 
-// Обертка для использования useNavigate в классовом компоненте
 export default Regist

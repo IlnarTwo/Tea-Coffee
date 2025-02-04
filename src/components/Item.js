@@ -34,7 +34,7 @@ class Item extends React.Component {
               marginBottom: '1rem'
             }}
           >
-            Название товара
+            {this.props.title}
           </Card.Title>
           <Card.Text 
             style={{ 
@@ -50,7 +50,7 @@ class Item extends React.Component {
             style={{ marginTop: '1rem' }}
           >
             <Button 
-              variant="success" 
+              onClick={this.props.onAddToCart}
               style={{ 
                 backgroundColor: '#8b7355', 
                 borderColor: '#8b7355',
@@ -69,7 +69,7 @@ class Item extends React.Component {
                 fontWeight: 'bold'
               }}
             >
-              9999₽
+              {this.props.price} ₽
             </div>
           </div>
         </Card.Body>
