@@ -3,39 +3,29 @@ header('Content-Type: application/json; charset=UTF-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, Password');
-// header("Access-Control-Allow-Credentials: true");
-
-$json = file_get_contents('php://input');
-$obj = json_decode($json, true);
 
 require_once("db.php");
 
 $output = [];
 
-if (isset($obj['title']) || isset($obj['category']) || isset($obj['discript']) || isset($obj['price'])){
-    $titleItem = $obj['title'];
-    $categoryItem = $obj['category'];
-    $discripItem = $obj['discript'];
-    $priceItem = $obj['price'];
-    
-    $allItem = "SELECT * FROM `item` where `title` like '%".$selectTitle."%' or `category` like '%".$selectCategory."%' or `discrip` like '%".$selectDiscript."%' or `price` like '%".$selectPrice."%'";
-    $res = $conn->query($allItem);
-    $items = $res->fetchAll(PDO::FETCH_ASSOC);
+// Проверяем, есть ли данные в запросе
+$json = file_get_contents('php://input');
+$obj = json_decode($json, true);
 
-    foreach ($items as $value){
-        $output [] = $value;
+// Подготовка SQL-запроса
+$sql = "SELECT * FROM `item`";
+
+// Выполнение запроса
+try {
+    $stmt = $conn->query($sql);
+    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($items as $value) {
+        $output[] = $value;
     }
-
-}else{
-
-    $allItem = "SELECT * FROM `item`";
-    $res = $conn->query($allItem);
-    $items = $res->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($items as $value){
-        $output [] = $value;
-    }
-
+} catch (PDOException $e) {
+    // Обработка ошибок
+    $output = ['error' => $e->getMessage()];
 }
 
 echo json_encode($output);
