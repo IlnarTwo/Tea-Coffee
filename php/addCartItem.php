@@ -13,7 +13,7 @@ require_once("db.php");
 
 $userEmail = "ila@ila"; // надо достать email из токена если я правильно понимаю как это работает
 
-$authSql = "SELECT * FROM `user` WHERE email = '".$email."'";
+$authSql = "SELECT * FROM `user` WHERE `email` = '".$userEmail."'";
 $res = $conn->query($authSql);
 
 $user = $res->fetch(PDO::FETCH_ASSOC);
@@ -24,21 +24,17 @@ if (isset($obj['listItem']) || isset($obj['price'])){
     $listItem = json_encode($obj['listItem']);
     $price = $obj['price'];
      
-    $sqlInsert = "INSERT INTO `orderitem`(`userid`, `itemsid`, `price`, `dateOrder`) VALUES ('".$user['id']."','".$listItem."','".$price."','".$date."')";
+    $sqlInsert = "INSERT INTO `orderitem`(`userid`, `itemsid`, `price`, `dateOrder`) VALUES ('".$user['iduser']."','".$listItem."','".$price."','".$date."')";
     $res = $conn->query($sqlInsert);
 }
 
 if ($res){
     echo json_encode(
-        ["output" => "
-            Товар оплачен
-        "]
+        ["output" => "Товар оплачен"]
     );
 }else{
     echo json_encode(
-        ["output" => "
-            Ошибка при оплате товара
-        "]
+        ["output" => "Ошибка при оплате товара"]
     );
 }
 ?>
