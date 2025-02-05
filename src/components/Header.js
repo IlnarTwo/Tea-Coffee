@@ -44,7 +44,7 @@ class Header extends React.Component {
             Каталог
           </Link>
 
-          <Link as={Link} to="/cart" className="linkHeader">
+          {/* <Link as={Link} to="/cart" className="linkHeader">
             Корзина
           </Link>
           <Link as={Link} to="/payment" className="linkHeader">
@@ -55,7 +55,7 @@ class Header extends React.Component {
           </Link>
           <Link as={Link} to="/admin" className="linkHeader">
             Админ
-          </Link>
+          </Link> */}
           
         </Nav>
       );

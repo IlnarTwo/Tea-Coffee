@@ -7,7 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       auth: false,
-      role: null, 
+      role: "", 
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);

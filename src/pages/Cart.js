@@ -33,16 +33,23 @@ class Cart extends React.Component {
   };
 
   addListItem = () => {
-    // let listItemDB = []
+    let listItemDB = []
+    let cart = this.state.cart
     let totalPrice = this.calculateTotal()
+
+    for (let i = 0; i < cart.length; i++){
+      listItemDB.push(cart[i]['id'])
+    }
+
+    console.log(listItemDB)
     
     if (localStorage['jwt']){
       axios.post("http://127.0.0.1/server/php/addCartItem.php", {
-        listItem: this.state.cart,
+        listItem: listItemDB,
         price: totalPrice
       })
       .then((res) => {
-        console.log(res.data)
+        alert(res.data.output)
         console.log("Заказ оформлен")
       })
       .catch((e) => {
