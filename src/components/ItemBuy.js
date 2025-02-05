@@ -99,7 +99,7 @@ class ItemBuy extends React.Component{
 
           <Button
             variant="danger"
-            onClick={this.props.removeCart(this.props.key)} // Вызываем функцию удаления
+            onClick={this.props.removeCart} // Вызываем функцию удаления
             style={{
               backgroundColor: "#a0522d",
               borderColor: "#a0522d",

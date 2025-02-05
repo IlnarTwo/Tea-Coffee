@@ -81,6 +81,7 @@ class Catalog extends React.Component {
         localStorage.setItem("cart", JSON.stringify(updatedCart)); 
       }
     );
+    console.log(this.state.cart)
   };
 
   render() {

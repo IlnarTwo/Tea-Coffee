@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ItemBuy from "../components/ItemBuy"
 import { Container, Row, Col, Button, Alert } from "react-bootstrap";
+import axios from "axios";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -30,6 +31,28 @@ class Cart extends React.Component {
   calculateTotal = () => {
     return this.state.cart.reduce((total, item) => total + item.price, 0);
   };
+
+  addListItem = () => {
+    // let listItemDB = []
+    let totalPrice = this.calculateTotal()
+    
+    if (localStorage['jwt']){
+      axios.post("http://127.0.0.1/server/php/addCartItem.php", {
+        listItem: this.state.cart,
+        price: totalPrice
+      })
+      .then((res) => {
+        console.log(res.data)
+        console.log("Заказ оформлен")
+      })
+      .catch((e) => {
+        console.log("Ошибка при оформлении заказа")
+        console.log(e)
+      })
+    }else{
+      console.log("Для оформления заказа войдите в профиль или зарегистрируйтесь")
+    }
+  }
 
   render() {
     const { cart } = this.state;
@@ -105,6 +128,7 @@ class Cart extends React.Component {
                       fontFamily: "Georgia, serif",
                       width: "100%",
                     }}
+                    onClick={this.addListItem()}
                   >
                     Оформить заказ
                   </Button>
