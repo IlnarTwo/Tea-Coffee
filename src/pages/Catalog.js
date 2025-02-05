@@ -137,6 +137,7 @@ class Catalog extends React.Component {
                           placeholder="От"
                           name="minPrice"
                           value={filters.minPrice}
+                          min={0}
                           onChange={this.handleFilterChange}
                           style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
                         />
@@ -147,6 +148,7 @@ class Catalog extends React.Component {
                           placeholder="До"
                           name="maxPrice"
                           value={filters.maxPrice}
+                          min={0}
                           onChange={this.handleFilterChange}
                           style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
                         />

@@ -11,8 +11,7 @@ class Regist extends React.Component {
       login: "",
       email: "",
       passw: "",
-      auth: false,
-      errorMessage: "", // Сообщение об ошибке
+      auth: false
     };
 
     this.onForm = this.onForm.bind(this);
@@ -39,8 +38,8 @@ class Regist extends React.Component {
 
       if (response.data.auth) {
         localStorage.setItem("jwt", response.data.token);
-        // localStorage.setItem('auth', response.data.auth);
-        // localStorage.setItem('role', response.data.role);
+        localStorage.setItem('auth', response.data.auth);
+        localStorage.setItem('role', response.data.role);
 
         axios.defaults.headers.common[
           "Authorization"
@@ -48,12 +47,9 @@ class Regist extends React.Component {
 
         this.setState({ auth: true });
         this.props.navigate("/catalog"); // Перенаправляем на главную страницу
-      } else {
-        this.setState({ errorMessage: response.data.message });
-      }
+      } 
     } catch (error) {
       console.error(error);
-      this.setState({ errorMessage: "Registration failed. Please try again." });
     }
   }
 
@@ -70,7 +66,7 @@ class Regist extends React.Component {
   }
 
   render() {
-    const { login, email, passw, errorMessage } = this.state;
+    const { login, email, passw } = this.state;
 
     return (
       <div style={{ backgroundColor: '#f8f5f2', minHeight: '100vh' }}>
@@ -129,11 +125,6 @@ class Regist extends React.Component {
                 />
               </Col>
             </Form.Group>
-            {errorMessage && (
-              <div className="text-danger text-center mb-3" style={{ fontFamily: 'Georgia, serif' }}>
-                {errorMessage}
-              </div>
-            )}
             <div className="d-grid gap-2">
               <Button
                 type="submit"

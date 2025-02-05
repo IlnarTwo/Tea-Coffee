@@ -15,6 +15,7 @@ const LogoutButton = () => {
         // Удаляем JWT из localStorage
         localStorage.removeItem("jwt");
         localStorage.removeItem("auth");
+        localStorage.clear()
 
         // Убираем заголовок Authorization для всех последующих запросов
         delete axios.defaults.headers.common["Authorization"];

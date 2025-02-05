@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ItemBuy from "../components/ItemBuy"
-import { Container, Row, Col, Button, ListGroup, Alert } from "react-bootstrap";
+import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -57,16 +57,17 @@ class Cart extends React.Component {
           ) : (
             <Row>
               <Col md={8}>
-                <ListGroup className="">
+                <div className="listItem">
                   {cart.map((item) => (
                       <ItemBuy
+                        key={item.id}
                         id={item.id} 
                         title={item.title}
                         price={item.price}
                         removeCart={() => this.removeFromCart(item.id)} // Передаем функцию удаления
                      />
                   ))}
-                </ListGroup>
+                </div>
               </Col>
               <Col md={4}>
                 <div

@@ -112,3 +112,9 @@ label{
 .hover-shadow:hover {
     transform: scale(1.05);
 }
+.listItem{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
