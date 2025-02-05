@@ -19,56 +19,59 @@ $passw = sha1(test_input($obj["passw"])); // Хэшируем пароль
 $role = "user";
 $group = "users";
 
-// Проверяем, существует ли пользователь с таким email
-$authSql = "SELECT * FROM `user` WHERE email = '".$email."'";
-$res = $conn->query($authSql);
-
-$user = $res->fetch(PDO::FETCH_ASSOC);
-
-if (empty($user)) {
-    // Если пользователь не существует, регистрируем его
-    $registSql = "INSERT INTO `user`(`login`, `email`, `passw`, `roleUser`, `roleGroup`) 
-                  VALUES ('".$login."','".$email."','".$passw."', '".$role."', '".$group."')";
-    $regRes = $conn->query($registSql);
-
-    if ($regRes) {
-        // Генерация JWT после успешной регистрации
-        $secretKey = "ilia_shurygin"; // Замените на ваш секретный ключ
-        $issuedAt = time();
-        $expirationTime = $issuedAt + 3600; // Токен будет действителен 1 час
-
-        $payload = [
-            'iat' => $issuedAt,
-            'exp' => $expirationTime,
-            'data' => [
-                'email' => $email,
+if(isset($obj['login']) || isset($obj['email']) || isset($obj['passw'])){
+    // Проверяем, существует ли пользователь с таким email
+    $authSql = "SELECT * FROM `user` WHERE email = '".$email."'";
+    $res = $conn->query($authSql);
+    
+    $user = $res->fetch(PDO::FETCH_ASSOC);
+    
+    if (empty($user)) {
+        // Если пользователь не существует, регистрируем его
+        $registSql = "INSERT INTO `user`(`login`, `email`, `passw`, `roleUser`, `roleGroup`) 
+                      VALUES ('".$login."','".$email."','".$passw."', '".$role."', '".$group."')";
+        $regRes = $conn->query($registSql);
+    
+        if ($regRes) {
+            // Генерация JWT после успешной регистрации
+            $secretKey = "ilia_shurygin"; // Замените на ваш секретный ключ
+            $issuedAt = time();
+            $expirationTime = $issuedAt + 3600; // Токен будет действителен 1 час
+    
+            $payload = [
+                'iat' => $issuedAt,
+                'exp' => $expirationTime,
+                'data' => [
+                    'email' => $email,
+                    'role' => $role,
+                    'group' => $group
+                ]
+            ];
+    
+            $jwt = JWT::encode($payload, $secretKey, 'HS256');
+    
+            // Отправляем JWT на фронтенд
+            echo json_encode([
+                'auth' => true,
                 'role' => $role,
-                'group' => $group
-            ]
-        ];
-
-        $jwt = JWT::encode($payload, $secretKey, 'HS256');
-
-        // Отправляем JWT на фронтенд
-        echo json_encode([
-            'auth' => true,
-            'role' => $role,
-            'token' => $jwt
-        ]);
+                'token' => $jwt
+            ]);
+        } else {
+            // Ошибка при регистрации
+            echo json_encode([
+                'auth' => false,
+                'message' => 'Registration failed'
+            ]);
+        }
     } else {
-        // Ошибка при регистрации
+        // Пользователь уже существует
         echo json_encode([
             'auth' => false,
-            'message' => 'Registration failed'
+            'message' => 'User already exists'
         ]);
     }
-} else {
-    // Пользователь уже существует
-    echo json_encode([
-        'auth' => false,
-        'message' => 'User already exists'
-    ]);
 }
+
 
 function test_input($data) {
     $data = trim($data); // Удаляем лишние пробелы
