@@ -165,8 +165,7 @@ class Catalog extends React.Component {
                       backgroundColor: "#8b7355",
                       borderColor: "#8b7355",
                       borderRadius: "5px",
-                      fontFamily: "Georgia, serif",
-                      marginRight: "10px",
+                      fontFamily: "Georgia, serif" 
                     }}
                   >
                     Применить

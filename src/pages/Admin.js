@@ -70,7 +70,7 @@ class Admin extends React.Component{
             <Form onSubmit={this.onForm} method="post" className="col-md-6 mx-auto">
               <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthEmail">
                 <Form.Label column sm="2">
-                  Img
+                  Изображение
                 </Form.Label>
                 <Col sm="5">
                   <Form.Control
@@ -82,7 +82,7 @@ class Admin extends React.Component{
               </Form.Group>
               <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthEmail">
                 <Form.Label column sm="2">
-                  Title
+                  Название
                 </Form.Label>
                 <Col sm="5">
                   <Form.Control
@@ -96,7 +96,7 @@ class Admin extends React.Component{
               </Form.Group>
               <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthPassw">
                 <Form.Label column sm="2">
-                  Category
+                  Категория
                 </Form.Label>
                 <Col sm="5">
                   <Form.Control 
@@ -110,7 +110,7 @@ class Admin extends React.Component{
               </Form.Group>
               <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthPassw">
                 <Form.Label column sm="2">
-                  Discript
+                  Описание
                 </Form.Label>
                 <Col sm="5">
                   <Form.Control 
@@ -124,7 +124,7 @@ class Admin extends React.Component{
               </Form.Group>
               <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthPassw">
                 <Form.Label column sm="2">
-                  Price
+                  Цена
                 </Form.Label>
                 <Col sm="5">
                   <Form.Control 

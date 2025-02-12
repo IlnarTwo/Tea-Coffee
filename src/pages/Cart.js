@@ -21,7 +21,9 @@ class Cart extends React.Component {
 
   // Удаление товара из корзины
   removeFromCart = (itemId) => {
-    const updatedCart = this.state.cart.filter((item) => item.id !== itemId);
+    // Приводим itemId к числу, если это необходимо
+    itemId = Number(itemId); // Убедимся, что itemId — это число
+    const updatedCart = this.state.cart.filter((item) => Number(item.id) !== itemId); // Приводим item.id к числу
     this.setState({ cart: updatedCart }, () => {
       localStorage.setItem("cart", JSON.stringify(updatedCart)); // Обновляем localStorage
     });
@@ -135,7 +137,7 @@ class Cart extends React.Component {
                       fontFamily: "Georgia, serif",
                       width: "100%",
                     }}
-                    onClick={this.addListItem()}
+                    onClick={this.addListItem} // Исправлено: убраны скобки
                   >
                     Оформить заказ
                   </Button>
