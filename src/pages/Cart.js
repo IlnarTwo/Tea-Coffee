@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import ItemBuy from "../components/ItemBuy"
+import ItemBuy from "../components/ItemBuy";
 import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 
@@ -9,59 +9,85 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: [], // Корзина с товарами
+      cart: [], // Корзина с товарами и их количеством
     };
   }
 
   componentDidMount() {
-    // Загружаем корзину из localStorage (или из состояния приложения)
+    // Загружаем корзину из localStorage
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     this.setState({ cart });
   }
 
   // Удаление товара из корзины
   removeFromCart = (itemId) => {
-    // Приводим itemId к числу, если это необходимо
-    itemId = Number(itemId); // Убедимся, что itemId — это число
-    const updatedCart = this.state.cart.filter((item) => Number(item.id) !== itemId); // Приводим item.id к числу
+    const updatedCart = this.state.cart.filter((item) => item.id !== itemId);
     this.setState({ cart: updatedCart }, () => {
       localStorage.setItem("cart", JSON.stringify(updatedCart)); // Обновляем localStorage
     });
   };
 
-  // Подсчет общей суммы
-  calculateTotal = () => {
-    return this.state.cart.reduce((total, item) => total + item.price, 0);
+  // Увеличение количества товара
+  increaseQuantity = (itemId) => {
+    const updatedCart = this.state.cart.map((item) =>
+      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    this.setState({ cart: updatedCart }, () => {
+      localStorage.setItem("cart", JSON.stringify(updatedCart)); // Обновляем localStorage
+    });
   };
 
+  // Уменьшение количества товара
+  decreaseQuantity = (itemId) => {
+    const updatedCart = this.state.cart
+      .map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item
+      )
+      .filter((item) => item.quantity > 0); // Удаляем товар, если количество стало 0
+    this.setState({ cart: updatedCart }, () => {
+      localStorage.setItem("cart", JSON.stringify(updatedCart)); // Обновляем localStorage
+    });
+  };
+
+  // Подсчет общей суммы с учетом количества товаров
+  calculateTotal = () => {
+    return this.state.cart.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+  };
+
+  // Оформление заказа
   addListItem = () => {
-    let listItemDB = []
-    let cart = this.state.cart
-    let totalPrice = this.calculateTotal()
+    const { cart } = this.state;
+    const totalPrice = this.calculateTotal();
 
-    for (let i = 0; i < cart.length; i++){
-      listItemDB.push(cart[i]['id'])
-    }
+    if (localStorage.getItem("jwt")) {
+      const listItemDB = cart.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+      }));
 
-    console.log(listItemDB)
-    
-    if (localStorage['jwt']){
-      axios.post("http://127.0.0.1/server/php/addCartItem.php", {
-        listItem: listItemDB,
-        price: totalPrice
-      })
-      .then((res) => {
-        alert(res.data.output)
-        console.log("Заказ оформлен")
-      })
-      .catch((e) => {
-        console.log("Ошибка при оформлении заказа")
-        console.log(e)
-      })
-    }else{
-      console.log("Для оформления заказа войдите в профиль или зарегистрируйтесь")
+      axios
+        .post("http://127.0.0.1/server/php/addCartItem.php", {
+          listItem: listItemDB,
+          price: totalPrice,
+        })
+        .then((res) => {
+          alert(res.data.output);
+          console.log("Заказ оформлен");
+          this.setState({ cart: [] }, () => {
+            localStorage.removeItem("cart"); // Очищаем корзину после оформления заказа
+          });
+        })
+        .catch((e) => {
+          console.log("Ошибка при оформлении заказа");
+          console.log(e);
+        });
+    } else {
+      console.log("Для оформления заказа войдите в профиль или зарегистрируйтесь");
     }
-  }
+  };
 
   render() {
     const { cart } = this.state;
@@ -91,13 +117,16 @@ class Cart extends React.Component {
               <Col md={8}>
                 <div className="listItem">
                   {cart.map((item) => (
-                      <ItemBuy
-                        key={item.id}
-                        id={item.id} 
-                        title={item.title}
-                        price={item.price}
-                        removeCart={() => this.removeFromCart(item.id)} // Передаем функцию удаления
-                     />
+                    <ItemBuy
+                      key={item.id}
+                      id={item.id}
+                      title={item.title}
+                      price={item.price}
+                      quantity={item.quantity}
+                      removeCart={() => this.removeFromCart(item.id)}
+                      increaseQuantity={() => this.increaseQuantity(item.id)}
+                      decreaseQuantity={() => this.decreaseQuantity(item.id)}
+                    />
                   ))}
                 </div>
               </Col>
@@ -137,7 +166,7 @@ class Cart extends React.Component {
                       fontFamily: "Georgia, serif",
                       width: "100%",
                     }}
-                    onClick={this.addListItem} // Исправлено: убраны скобки
+                    onClick={this.addListItem}
                   >
                     Оформить заказ
                   </Button>

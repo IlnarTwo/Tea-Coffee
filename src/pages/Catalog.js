@@ -10,8 +10,8 @@ class Catalog extends React.Component {
     this.state = {
       filters: {
         category: "",
-        minPrice: "", 
-        maxPrice: "", 
+        minPrice: "",
+        maxPrice: "",
       },
       items: [
         { id: 1, title: "Чай зеленый", price: 300, category: "tea" },
@@ -20,8 +20,8 @@ class Catalog extends React.Component {
         { id: 4, title: "Кофе робуста", price: 400, category: "coffee" },
         { id: 5, title: "Чай улун", price: 600, category: "tea" },
       ],
-      filteredItems: [], 
-      cart: [],
+      filteredItems: [],
+      cart: JSON.parse(localStorage.getItem("cart")) || [], // Загружаем корзину из localStorage
     };
   }
 
@@ -67,21 +67,30 @@ class Catalog extends React.Component {
           maxPrice: "",
         },
       },
-      this.applyFilters 
+      this.applyFilters
     );
   };
 
   addToCart = (item) => {
-    const updatedCart = [...this.state.cart, item];
-    this.setState(
-      {
-        cart: updatedCart
-      },
-      () => {
-        localStorage.setItem("cart", JSON.stringify(updatedCart)); 
-      }
-    );
-    console.log(this.state.cart)
+    const { cart } = this.state;
+
+    // Проверяем, есть ли товар уже в корзине
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+
+    if (existingItemIndex !== -1) {
+      // Если товар уже есть в корзине, увеличиваем его количество
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity += 1;
+      this.setState({ cart: updatedCart }, () => {
+        localStorage.setItem("cart", JSON.stringify(updatedCart)); // Сохраняем корзину в localStorage
+      });
+    } else {
+      // Если товара нет в корзине, добавляем его с количеством 1
+      const updatedCart = [...cart, { ...item, quantity: 1 }];
+      this.setState({ cart: updatedCart }, () => {
+        localStorage.setItem("cart", JSON.stringify(updatedCart)); // Сохраняем корзину в localStorage
+      });
+    }
   };
 
   render() {
@@ -91,7 +100,6 @@ class Catalog extends React.Component {
       <div style={{ backgroundColor: "#f8f5f2", minHeight: "100vh" }}>
         <Header title="Каталог" auth={this.props.auth} />
         <div className="container py-5">
-
           <Row>
             {/* Блок фильтров */}
             <Col md={3}>
@@ -165,7 +173,7 @@ class Catalog extends React.Component {
                       backgroundColor: "#8b7355",
                       borderColor: "#8b7355",
                       borderRadius: "5px",
-                      fontFamily: "Georgia, serif" 
+                      fontFamily: "Georgia, serif",
                     }}
                   >
                     Применить
