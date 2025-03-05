@@ -1,156 +1,165 @@
-import React from "react"
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import React, { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Users from "../components/Users";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Container } from "react-bootstrap";
 import axios from "axios";
 
-class Admin extends React.Component{
+const Admin = ({ auth }) => {
+  const [formData, setFormData] = useState({
+    title: "",
+    category: "",
+    discript: "",
+    price: "",
+    img: null, // Для хранения файла изображения
+  });
 
-  constructor(props){
-    super(props)
-    this.state = {
-      title: "",
-      category: "",
-      discript: "",
-      price: ""
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "img") {
+      setFormData({ ...formData, [name]: files[0] }); // Сохраняем файл изображения
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("category", formData.category);
+    data.append("discript", formData.discript);
+    data.append("price", formData.price);
+    if (formData.img) {
+      data.append("img", formData.img); // Добавляем изображение, если оно есть
     }
 
-    this.onForm = this.onForm.bind(this)
-    this.handleChangeTitle = this.handleChangeTitle.bind(this)
-    this.handleChangeCategory = this.handleChangeCategory.bind(this)
-    this.handleChangeDiscript = this.handleChangeDiscript.bind(this)
-    this.handleChangePrice = this.handleChangePrice.bind(this)
-  }
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1/server/php/addItem.php",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Указываем тип контента для загрузки файлов
+          },
+        }
+      );
+      console.log(response.data);
+      alert("Товар успешно добавлен!");
+      setFormData({ title: "", category: "", discript: "", price: "", img: null }); // Очищаем форму
+    } catch (error) {
+      console.error("Ошибка при добавлении товара:", error);
+      alert("Произошла ошибка при добавлении товара.");
+    }
+  };
 
-  
-  async onForm(event) {
-    event.preventDefault()
-    
-    // var self = this
-
-    axios.post( "http://127.0.0.1/server/php/addItem.php", {
-      title: this.state.title,
-      category: this.state.category,
-      discript: this.state.discript,
-      price: this.state.price
-    })
-    .then((response) => {
-      console.log(response)
-      // self.setState({auth: response['data']['auth']})
-    })
-    .catch((error) => {
-      console.log(error)
-    }) 
-
-  }
-
-  handleChangeTitle(event) {
-    this.setState({title: event.target.value})
-  }
-  handleChangeCategory(event) {
-    this.setState({category: event.target.value})
-  }
-  handleChangeDiscript(event){
-    this.setState({discript: event.target.value})
-  }
-  handleChangePrice(event){
-    this.setState({price: event.target.value})
-  }
-
-  render(){
-    return(
-      <div>
-        <Header title="Admin panel" auth={this.props.auth}/>
-        <div className="container">
-          <div className="rowBlock">
-            <div className="col-md-6">
-              <Users />
-            </div>
-            <Form onSubmit={this.onForm} method="post" className="col-md-6 mx-auto">
-              <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthEmail">
-                <Form.Label column sm="2">
+  return (
+    <div style={{ backgroundColor: "#f8f5f2", minHeight: "100vh" }}>
+      <Header title="Admin panel" auth={auth} />
+      <Container className="py-5">
+        <h2
+          className="text-center mb-4"
+          style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}
+        >
+          Панель администратора
+        </h2>
+        <Row>
+          <Col md={6}>
+            <Users />
+          </Col>
+          <Col md={6}>
+            <Form
+              onSubmit={handleSubmit}
+              className="p-4"
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: "10px",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <Form.Group className="mb-3">
+                <Form.Label style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}>
                   Изображение
                 </Form.Label>
-                <Col sm="5">
-                  <Form.Control
-                    type="file"
-                    name="img"
-                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
-                  />
-                </Col>
+                <Form.Control
+                  type="file"
+                  name="img"
+                  onChange={handleChange}
+                  style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
+                />
               </Form.Group>
-              <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthEmail">
-                <Form.Label column sm="2">
+              <Form.Group className="mb-3">
+                <Form.Label style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}>
                   Название
                 </Form.Label>
-                <Col sm="5">
-                  <Form.Control
-                    type="text"
-                    name="title"
-                    onChange={this.handleChangeTitle}
-                    required
-                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
-                  />
-                </Col>
+                <Form.Control
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
+                />
               </Form.Group>
-              <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthPassw">
-                <Form.Label column sm="2">
+              <Form.Group className="mb-3">
+                <Form.Label style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}>
                   Категория
                 </Form.Label>
-                <Col sm="5">
-                  <Form.Control 
-                    type="text" 
-                    name="category" 
-                    onChange={this.handleChangeCategory} 
-                    required
-                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
-                  />
-                </Col>
+                <Form.Control
+                  type="text"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
+                />
               </Form.Group>
-              <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthPassw">
-                <Form.Label column sm="2">
+              <Form.Group className="mb-3">
+                <Form.Label style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}>
                   Описание
                 </Form.Label>
-                <Col sm="5">
-                  <Form.Control 
-                    as="textarea" 
-                    name="discript" 
-                    onChange={this.handleChangeDiscript} 
-                    required
-                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
-                  />
-                </Col>
+                <Form.Control
+                  as="textarea"
+                  name="discript"
+                  value={formData.discript}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
+                />
               </Form.Group>
-              <Form.Group as={Row} className="justify-content-md-center mb-3" controlId="formAuthPassw">
-                <Form.Label column sm="2">
+              <Form.Group className="mb-3">
+                <Form.Label style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}>
                   Цена
                 </Form.Label>
-                <Col sm="5">
-                  <Form.Control 
-                    as="input"
-                    type="number" 
-                    name="price" 
-                    onChange={this.handleChangePrice} 
-                    required
-                    style={{ borderRadius: '5px', borderColor: '#d3c1b2' }}
-                  />
-                </Col>
+                <Form.Control
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
+                />
               </Form.Group>
-              <Button 
-                type="submit" 
-                className="col-md-5 mx-auto"
-                style={{ backgroundColor: '#8b7355', borderColor: '#8b7355', borderRadius: '5px', fontFamily: 'Georgia, serif' }}
-                >
-                Add item
+              <Button
+                type="submit"
+                style={{
+                  backgroundColor: "#8b7355",
+                  borderColor: "#8b7355",
+                  borderRadius: "5px",
+                  fontFamily: "Georgia, serif",
+                  width: "100%",
+                }}
+              >
+                Добавить товар
               </Button>
             </Form>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    )
-  }
-}
+          </Col>
+        </Row>
+      </Container>
+      <Footer />
+    </div>
+  );
+};
 
-export default Admin
+export default Admin;
