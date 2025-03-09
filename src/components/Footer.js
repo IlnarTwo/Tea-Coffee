@@ -30,7 +30,7 @@ class Footer extends React.Component{
           </a>
         </div>
         <p className="mt-3" style={{ fontFamily: 'Georgia, serif' }}>
-          © 2024 Все права защищены
+          © 2025 Все права защищены
         </p>
       </div>
     </Container>
