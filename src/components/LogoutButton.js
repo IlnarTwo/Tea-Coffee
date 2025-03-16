@@ -15,6 +15,8 @@ const LogoutButton = () => {
         // Удаляем JWT из localStorage
         localStorage.removeItem("jwt");
         localStorage.removeItem("auth");
+        localStorage.removeItem("role");
+        localStorage.removeItem("email");
         localStorage.clear()
 
         // Убираем заголовок Authorization для всех последующих запросов

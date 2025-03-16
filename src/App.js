@@ -30,6 +30,7 @@ class App extends React.Component {
 
     this.setState({auth: localStorage['auth']})
     this.setState({auth: localStorage['role']})
+    console.log(this.state.role)
 
     // var self = this
 

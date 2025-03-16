@@ -5,58 +5,49 @@ import LogoutButton from "./LogoutButton";
 
 class Header extends React.Component {
   outputPage() {
-    const { auth, role } = this.props;
+    const auth = localStorage['auth'];
+    const role = localStorage['role'];
 
     if (auth) {
       return (
         <Nav className="ms-auto">
           <LogoutButton />
-          <Link as={Link} to="/catalog" className="linkHeader">
+          <Link to="/catalog" className="linkHeader">
             Каталог
           </Link>
-          <Link as={Link} to="/cart" className="linkHeader">
+          <Link to="/cart" className="linkHeader">
             Корзина
           </Link>
-          <Link as={Link} to="/payment" className="linkHeader">
+          <Link to="/payment" className="linkHeader">
             Оплата
           </Link>
-          <Link as={Link} to="/profil" className="linkHeader">
+          <Link to="/profil" className="linkHeader">
             Профиль
           </Link>
           {role === "admin" && (
-            <Link as={Link} to="/admin" className="linkHeader">
+            <Link to="/admin" className="linkHeader">
               Админ
             </Link>
           )}
+
+          <Link to="/admin" className="linkHeader">
+            Админ
+          </Link>
+
         </Nav>
       );
     } else {
       return (
         <Nav className="ms-auto">
-          
-          <Link as={Link} to="/" className="linkHeader">
+          <Link to="/" className="linkHeader">
             Вход
           </Link>
-          <Link as={Link} to="/regist" className="linkHeader">
+          <Link to="/regist" className="linkHeader">
             Регистрация
           </Link>
-          <Link as={Link} to="/catalog" className="linkHeader">
+          <Link to="/catalog" className="linkHeader">
             Каталог
           </Link>
-
-          {/* <Link as={Link} to="/cart" className="linkHeader">
-            Корзина
-          </Link>
-          <Link as={Link} to="/payment" className="linkHeader">
-            Оплата
-          </Link>
-          <Link as={Link} to="/profil" className="linkHeader">
-            Профиль
-          </Link>
-          <Link as={Link} to="/admin" className="linkHeader">
-            Админ
-          </Link> */}
-          
         </Nav>
       );
     }

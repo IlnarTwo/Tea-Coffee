@@ -33,7 +33,8 @@ const Auth = ({ auth }) => {
         // Сохраняем JWT в localStorage
         localStorage.setItem("jwt", response.data.token);
         localStorage.setItem("auth", response.data.auth);
-        localStorage.setItem("role", response.data.role);
+        localStorage.setItem("role", response.data.roleUser);
+        localStorage.setItem("email", response.data.email);
 
         // Устанавливаем заголовок авторизации для axios
         axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;

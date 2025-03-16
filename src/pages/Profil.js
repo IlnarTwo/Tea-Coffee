@@ -6,7 +6,7 @@ import BoxOrder from "../components/BoxOrder";
 import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 
-const Profil = ({ auth }) => {
+const Profil = () => {
   const [userData, setUserData] = useState(null); // Данные пользователя
   const [orders, setOrders] = useState([]); // Список заказов
   const [loading, setLoading] = useState(true); // Состояние загрузки
@@ -15,16 +15,32 @@ const Profil = ({ auth }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const email = localStorage['auth'] || ''; // Получаем email из localStorage
+
+        console.log(email)
+
         // Загрузка данных пользователя
         const userResponse = await axios.post(
-          "http://127.0.0.1/server/php/profil.php"
+          "http://127.0.0.1/server/php/profil.php",
+          {
+            email: email,
+          }
         );
+        if (userResponse.status !== 200) {
+          throw new Error("Ошибка при загрузке данных пользователя");
+        }
         setUserData(userResponse.data);
 
         // Загрузка заказов пользователя
         const ordersResponse = await axios.post(
-          "http://127.0.0.1/server/php/orders.php"
+          "http://127.0.0.1/server/php/orders.php",
+          {
+            email: email,
+          }
         );
+        if (ordersResponse.status !== 200) {
+          throw new Error("Ошибка при загрузке заказов");
+        }
         setOrders(ordersResponse.data);
       } catch (error) {
         console.error("Ошибка при загрузке данных:", error);
@@ -42,7 +58,7 @@ const Profil = ({ auth }) => {
 
   return (
     <div style={{ backgroundColor: "#f8f5f2", minHeight: "100vh" }}>
-      <Header title="Профиль" auth={auth} />
+      <Header title="Профиль" />
       <Container className="py-5">
         <h2
           className="text-center mb-4"
@@ -69,7 +85,7 @@ const Profil = ({ auth }) => {
               >
                 Информация о пользователе
               </h4>
-              {userData && (
+              {userData && userData.login && userData.email && userData.roleUser && (
                 <ProfilBlock
                   login={userData.login}
                   email={userData.email}
@@ -97,9 +113,9 @@ const Profil = ({ auth }) => {
                 Ваши заказы
               </h4>
               {orders.length > 0 ? (
-                orders.map((order) => (
+                orders.map((order, index) => (
                   <BoxOrder
-                    key={order.idorder}
+                    key={index}
                     id={order.idorder}
                     date={order.dateOrder}
                     total={order.price}

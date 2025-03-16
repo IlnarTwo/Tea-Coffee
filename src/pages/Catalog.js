@@ -22,6 +22,7 @@ const Catalog = ({ auth }) => {
         const response = await axios.get("http://127.0.0.1/server/php/itemOutput.php"); // Укажите правильный URL
         setItems(response.data); // Предполагаем, что сервер возвращает массив товаров
         setFilteredItems(response.data); // Инициализируем отфильтрованные товары
+        console.log(response.data)
       } catch (error) {
         console.error("Ошибка при загрузке каталога:", error);
       }
@@ -183,6 +184,7 @@ const Catalog = ({ auth }) => {
                   <Item
                     title={item.title}
                     price={item.price}
+                    discrip={item.discrip}
                     onAddToCart={() => addToCart(item)} // Передаем функцию добавления в корзину
                   />
                 </Col>

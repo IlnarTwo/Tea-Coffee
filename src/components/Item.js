@@ -43,6 +43,8 @@ class Item extends React.Component {
               fontSize: '0.9rem'
             }}
           >
+            {this.props.discrip}
+            <br/>
             Описание товара. Краткое описание, которое подчеркивает особенности продукта.
           </Card.Text>
           <div 
@@ -69,7 +71,7 @@ class Item extends React.Component {
                 fontWeight: 'bold'
               }}
             >
-              {this.props.price} ₽
+              {this.props.price} ₽/кг.
             </div>
           </div>
         </Card.Body>
