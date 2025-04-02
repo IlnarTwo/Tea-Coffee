@@ -11,10 +11,9 @@ $obj = json_decode($json, true);
 
 require_once("db.php");
 
-// $email = $_SESSION['email'];
 $email = "ila@ila";
 
-$authSql = "SELECT * FROM `user` where email = '".$email."'";
+$authSql = "SELECT * FROM `user` where email = '".$obj['email']."'";
 $res = $conn->query($authSql);
 
 $user = $res->fetch(PDO::FETCH_ASSOC);

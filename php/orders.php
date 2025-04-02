@@ -11,10 +11,14 @@ $obj = json_decode($json, true);
 
 require_once("db.php");
 
-$authSql ="SELECT * FROM `orderitem`";
-$res = $conn->query($authSql);
+$userIdSql = "SELECT * FROM `user` where email = '".$obj['email']."'";
+$user = $conn->query($userIdSql);
+$id = $user->fetchAll(PDO::FETCH_ASSOC);
 
-$orders = $res->fetch(PDO::FETCH_ASSOC);
+$ordersSql ="SELECT * FROM `orderitem` where userid = '".$id['iduser']."'";
+$res = $conn->query($ordersSql);
 
-echo json_encode($orders);
+$orders = $res->fetchAll(PDO::FETCH_ASSOC);
+
+echo json_encode(["orders" => $orders]); 
 ?>
