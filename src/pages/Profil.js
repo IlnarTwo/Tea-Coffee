@@ -15,9 +15,7 @@ const Profil = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const email = localStorage['auth'] || ''; // Получаем email из localStorage
-
-        console.log(email)
+        const email = localStorage['email'] // Получаем email из localStorage
 
         // Загрузка данных пользователя
         const userResponse = await axios.post(
@@ -30,18 +28,6 @@ const Profil = () => {
           throw new Error("Ошибка при загрузке данных пользователя");
         }
         setUserData(userResponse.data);
-
-        // Загрузка заказов пользователя
-        const ordersResponse = await axios.post(
-          "http://127.0.0.1/server/php/orders.php",
-          {
-            email: email,
-          }
-        );
-        if (ordersResponse.status !== 200) {
-          throw new Error("Ошибка при загрузке заказов");
-        }
-        setOrders(ordersResponse.data);
       } catch (error) {
         console.error("Ошибка при загрузке данных:", error);
       } finally {
@@ -114,13 +100,7 @@ const Profil = () => {
               </h4>
               {orders.length > 0 ? (
                 orders.map((order, index) => (
-                  <BoxOrder
-                    key={index}
-                    id={order.idorder}
-                    date={order.dateOrder}
-                    total={order.price}
-                    status={order.status}
-                  />
+                  <BoxOrder/>
                 ))
               ) : (
                 <p style={{ color: "#8b7355", fontFamily: "Georgia, serif" }}>

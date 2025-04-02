@@ -11,7 +11,9 @@ const BoxOrder = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.post("http://127.0.0.1/server/php/orders.php");
+        const response = await axios.post("http://127.0.0.1/server/php/orders.php",{
+          email: localStorage['email'],
+        });
         setOrders(response.data.orders); // Предполагаем, что сервер возвращает объект с массивом заказов
         setLoading(false);
       } catch (error) {

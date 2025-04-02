@@ -30,10 +30,6 @@ class Header extends React.Component {
             </Link>
           )}
 
-          <Link to="/admin" className="linkHeader">
-            Админ
-          </Link>
-
         </Nav>
       );
     } else {

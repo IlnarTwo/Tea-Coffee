@@ -14,6 +14,11 @@ const Admin = ({ auth }) => {
     img: null, // Для хранения файла изображения
   });
 
+  const categories = [
+    { value: "tea", label: "Чай" },
+    { value: "coffee", label: "Кофе" },
+  ];
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "img") {
@@ -106,14 +111,20 @@ const Admin = ({ auth }) => {
                 <Form.Label style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}>
                   Категория
                 </Form.Label>
-                <Form.Control
-                  type="text"
+                <Form.Select
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
                   required
                   style={{ borderRadius: "5px", borderColor: "#d3c1b2" }}
-                />
+                >
+                  <option value="">Выберите категорию</option>
+                  {categories.map((category) => (
+                    <option key={category.value} value={category.value}>
+                      {category.label}
+                    </option>
+                  ))}
+                </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3">
                 <Form.Label style={{ color: "#4a2c2a", fontFamily: "Georgia, serif" }}>
